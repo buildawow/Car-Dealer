@@ -77,25 +77,25 @@
 </footer>
 
 
-<script src="assets/js/jquery-1.11.0.min.js"></script>
+<script src="{{ asset('assets/js/jquery-1.11.0.min.js') }}"></script>
 
 <!-- Slider Pro Js -->
-<script src="assets/js/sliderpro.min.js"></script>
+<script src="{{ asset('assets/js/sliderpro.min.js') }}"></script>
 
 <!-- Slick Slider Js -->
-<script src="assets/js/slick.js"></script>
+<script src="{{ asset('assets/js/slick.js') }}"></script>
 
 <!-- Owl Carousel Js -->
-<script src="assets/js/owl.carousel.min.js"></script>
+<script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
 
 <!-- Boostrap Js -->
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 
 <!-- Boostrap Js -->
-<script src="assets/js/wow.animation.js"></script>
+<script src="{{ asset('assets/js/wow.animation.js') }}"></script>
 
 <!-- Custom Js -->
-<script src="assets/js/custom.js"></script>
+<script src="{{ asset('assets/js/custom.js') }}"></script>
 
 </body>
 </html>

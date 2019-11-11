@@ -24,14 +24,14 @@
 								<div class="car-item wow fadeIn" data-wow-duration="0.75s">
 									<div class="thumb-content">
 										<div class="car-banner">
-											<a href="#" style="font-size: 10px">{{ $car->detail() }}</a>
+											<a href="{{ route('car-detail', $car) }}" style="font-size: 10px">{{ $car->detail() }}</a>
 										</div>
 										<div class="thumb-inner">
-											<a href="single_car.html"><img src="{{ asset('storage/' . $car->picture) }}" alt="{{ $car->brand }} {{ $car->model }}" onerror="this.onerror=null;this.src='{{ asset('assets/images/image-placeholder.svg') }}';" class="img-fluid"></a>
+											<a href="{{ route('car-detail', $car) }}"><img src="{{ asset('storage/' . $car->picture) }}" alt="{{ $car->brand }} {{ $car->model }}" onerror="this.onerror=null;this.src='{{ asset('assets/images/image-placeholder.svg') }}';" class="img-fluid"></a>
 										</div>
 									</div>
 									<div class="down-content">
-										<a href="single_car.html"><h4>{{ $car->brand }} {{ $car->model }}</h4></a>
+										<a href="{{ route('car-detail', $car) }}"><h4>{{ $car->brand }} {{ $car->model }}</h4></a>
 										<span>Q{{ $car->price }}</span>
 										<p>Informacion del vehiculo</p>
 										<ul class="car-info">

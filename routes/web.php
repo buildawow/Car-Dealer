@@ -13,6 +13,12 @@
 
 Route::get('/', 'WelcomeController@index')->name('welcome');
 
+Route::get('car-detail/{car}', 'CarDetailController@show')->name('car-detail');
+
+Route::get('list-by-brand/{brand}', 'CarListBrandController@show')->name('list-by-brand');
+
+Route::get('list-by-model/{model}', 'CarListModelController@show')->name('list-by-model');
+
 Route::any('car-search', 'CarController@search')->name('car-search');
 
 Route::any('advance-search', 'CarController@advanceSearch')->name('advance-search');
