@@ -24,10 +24,10 @@
 								<div class="car-item wow fadeIn" data-wow-duration="0.75s">
 									<div class="thumb-content">
 										<div class="car-banner">
-											<a href="single_car.html">En Venta</a>
+											<a href="#" style="font-size: 10px">{{ $car->detail() }}</a>
 										</div>
 										<div class="thumb-inner">
-											<a href="single_car.html"><img src="{{ asset('storage/' . $car->picture) }}" alt="{{ $car->brand }} {{ $car->model }}"></a>
+											<a href="single_car.html"><img src="{{ asset('storage/' . $car->picture) }}" alt="{{ $car->brand }} {{ $car->model }}" onerror="this.onerror=null;this.src='{{ asset('assets/images/image-placeholder.svg') }}';" class="img-fluid"></a>
 										</div>
 									</div>
 									<div class="down-content">
@@ -37,8 +37,8 @@
 										<ul class="car-info">
 											<li><div class="item"><i class="flaticon flaticon-calendar"></i><p>{{ $car->year->format('Y') }}</p></div></li>
 											<li><div class="item"><i class="flaticon flaticon-speed"></i><p>{{ $car->brand }}</p></div></li>
-											<li><div class="item"><i class="flaticon flaticon-fuel"></i><p>{{ $car->model }}</p></div></li>
-											<li><div class="item"><i class="flaticon flaticon-road"></i><p>26.00km</p></div></li>
+											<li><div class="item"><i class="flaticon flaticon-car"></i><p>{{ $car->model }}</p></div></li>
+											<li><div class="item"><i class="flaticon flaticon-road"></i><p>{{ $car->mileage }} km</p></div></li>
 										</ul>
 									</div>
 								</div>

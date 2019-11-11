@@ -5,6 +5,7 @@
 <form method="POST" action="{{ route('car.store') }}" class="mt-5" enctype="multipart/form-data">
     @csrf
     <div class="d-flex align-items-center justify-content-between">
+        <a href="{{ url()->previous() }}" class="btn btn-info">Regresar</a>
         <h1>Vehiculo / Crear</h1>
         <img src="{{ asset('storage/' . $car->picture) }}" alt="{{ $car->brand }} {{ $car->model }}" id="output" class="img-fluid" width="150px" height="150px" onerror="this.onerror=null;this.src='{{ asset('assets/images/image-placeholder.svg') }}';" >
         <label for="picture" class="btn btn-outline-info" id="pictureLabel" >Cambiar Foto</label>
@@ -39,6 +40,13 @@
     <label for="price">Precio</label>
     <input type="text" class="form-control" id="price" name="price" value="{{ old('price') }}">
     @error('price')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
+</div>
+<div class="form-group">
+    <label for="mileage">Kilometraje</label>
+    <input type="number" class="form-control" id="mileage" name="mileage" value="{{ old('mileage') }}">
+    @error('mileage')
     <span class="text-danger">{{ $message }}</span>
     @enderror
 </div>

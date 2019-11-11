@@ -102,7 +102,7 @@ section {
     background-color: #f4c23d!important
 }
 
-.secondary-button a {
+.secondary-button a, .secondary-button button {
     display: inline-block;
     background: #f4c23d;
     padding: 10px 20px;

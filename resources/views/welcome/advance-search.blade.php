@@ -1,4 +1,4 @@
-<section id="advance-search">
+<section id="advance-search" class="mt-5">
     <div class="features-search-section">
         <div class="container">
             <div class="row">
@@ -101,7 +101,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="secondary-button">
-                                            <button type="submit" class="btn btn-primary" onclick="submit()">Buscar <i class="fa fa-search"></i></button>
+                                            <button type="submit" class="btn btn-block" onclick="submit()">Buscar <i class="fa fa-search"></i></button>
                                         </div>
                                     </div>
                                 </form>

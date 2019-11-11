@@ -4,6 +4,7 @@
 
 <form class="mt-5">
 <div class="d-flex align-items-center justify-content-between">
+    <a href="{{ route('car.index') }}" class="btn btn-info">Regresar</a>
     <h1>Vehiculo / {{ $car->model }} {{ $car->year->format('Y') }}</h1>
     <img src="{{ asset('storage/' . $car->picture) }}" alt="" class="img-fluid" width="150px" height="150px" onerror="this.onerror=null;this.src='{{ asset('assets/images/image-placeholder.svg') }}';">
 </div>
@@ -23,6 +24,10 @@
 <div class="form-group">
     <label for="price">Precio</label>
     <input readonly type="text" class="form-control" id="price" name="price" value="{{ old('price', $car->price) }}">
+</div>
+<div class="form-group">
+    <label for="mileage">Kilometraje</label>
+    <input readonly type="text" class="form-control" id="mileage" name="mileage" value="{{ old('mileage', $car->mileage) }}">
 </div>
 <div class="form-group">
     <label for="availability">Disponibilidad</label>

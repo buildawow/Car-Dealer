@@ -29,7 +29,7 @@
                     @if ($car->availability)
                     <a href="{{ route('car.show', $car) }}"><span class="badge badge-primary p-2">Disponible</span></a>
                     @else
-                    <a href="{{ route('car.show', $car) }}"><span class="badge badge-danger">No Disponible</span></a>
+                    <a href="{{ route('car.show', $car) }}"><span class="badge badge-danger p-2">No Disponible</span></a>
                     @endif
                     </td>
                 </tr>

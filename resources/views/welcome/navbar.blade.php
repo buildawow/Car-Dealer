@@ -7,7 +7,7 @@
     </form>
 </div>
 	
-<header class="site-header wow fadeIn" data-wow-duration="1s" >
+<header class="site-header wow fadeIn bg-dark" data-wow-duration="1s" >
     <div id="main-header" class="main-header">
         <div class="container clearfix ">
             {{-- <div class="logo">

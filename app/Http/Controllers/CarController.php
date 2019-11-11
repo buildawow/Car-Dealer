@@ -18,7 +18,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        return view('car.index', ['cars' => Car::paginate(10)]);
+        return view('car.index', ['cars' => Car::paginate(6)]);
     }
 
     /**
@@ -99,11 +99,13 @@ class CarController extends Controller
             $this->resizeImage($picture);
         }
         $car->update([
-            'brand'     => $request->brand,
-            'model'     => $request->model,
-            'year'      => $request->year,
-            'price'     => $request->price,
-            'picture'   => $picture
+            'brand'         => $request->brand,
+            'model'         => $request->model,
+            'year'          => $request->year,
+            'price'         => $request->price,
+            'availability'  => $request->availability,
+            'mileage'       => $request->mileage,
+            'picture'       => $picture,
         ]);
         return redirect()->route('car.index')->with('success', 'Vehiculo Actualizado');
     }

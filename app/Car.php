@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     protected $fillable = [
-        'brand', 'model', 'year', 'picture', 'price', 'availability'
+        'brand', 'model', 'year', 'picture', 'price', 'availability', 'mileage'
     ];
 
     protected $casts = [
@@ -36,6 +36,16 @@ class Car extends Model
     public function scopeCarModel($query, $model)
     {
         return $query->orwhere('brand', 'LIKE', "%{$model}%");
+    }
+
+    /**
+     * It returns a message of availability
+     * 
+     * @return string
+     */
+    public function detail()
+    {
+        return $this->availability == 1 ? 'Disponible' : 'No Disponible';
     }
 
 
