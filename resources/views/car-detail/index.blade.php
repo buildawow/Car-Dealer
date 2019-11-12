@@ -4,14 +4,14 @@
 
 @include('welcome.navbar')
 
-<div class="blog-page" style="margin-top: 100px;">
+<div class="blog-page" style="margin-top: 150px;">
 		<div class="container">
 			<div class="row">
 
 				<div class="col-md-8">
 					<div class="single-post">
 						<div class="item">
-							<img src="{{ asset('storage/' . $car->picture) }}" alt="">
+							<img id="banner" src="{{ asset('storage/' . $car->picture) }}" alt="">
 							<div class="down-content">
 								<h4>{{ $car->brand }} {{ $car->model }}</h4>
 								<ul>
@@ -20,9 +20,29 @@
 									<li><span><em>Año:</em><a href="#">{{ $car->year->format('Y') }}</a></span></li>
 									<li><span><em>Kilometraje:</em><a href="#">{{ $car->mileage }} km</a></li>
 								</ul>
-								<p>
-                                    <em>{{ $car->detail() }}</em>
-                                </p>
+								<div class="d-flex flex-row align-items-center justify-content-left">
+									
+									<em class="mr-5">{{ $car->detail() }}</em>
+									<img 
+										src="{{ asset('storage/' . $car->picture) }}" id="main-image" 
+										style="cursor:pointer"
+										class="my-1 img-fluid mx-1" 
+										height="100px" width="100px" 
+										onerror="this.onerror=null;this.src='{{ asset('assets/images/image-placeholder.svg') }}';" 
+										onclick="changeImage(this)"
+									/>
+									@foreach ($galleryImages as $gallery)
+										<img 
+											src="{{ asset('storage/' . $gallery->image) }}" id="main-image" 
+											style="cursor:pointer"
+											class="my-1 img-fluid mx-1" 
+											height="100px" width="100px" 
+											onerror="this.onerror=null;this.src='{{ asset('assets/images/image-placeholder.svg') }}';" 
+											onclick="changeImage(this)"
+										/>
+									@endforeach
+									
+                                </div>
 							</div>
 						</div>
 					</div>
@@ -32,20 +52,16 @@
 					<div class="sidebar-widgets">
 						<div class="sidebar-widget">
 
-
-
-							
-								<form method="POST" action="{{ route('car-search') }}">
-									@csrf
-									<div class="search-widget">
-									<input type="search" name="query" placeholder="Escribe la marca, modelo o año del auto(s) que buscas" />
-									</div>
-									<button type="submit" class="primary-button d-none" onclick="submit()">Buscar <i class="fa fa-search"></i></button>
-								</form>
-								{{-- <input type="text" onfocus="this.value=''" placeholder="Busca por Marca o Modelo"> --}}
-							
+							<form method="POST" action="{{ route('car-search') }}">
+								@csrf
+								<div class="search-widget">
+								<input type="search" name="query" placeholder="Escribe la marca, modelo o año del auto(s) que buscas" />
+								</div>
+								<button type="submit" class="primary-button d-none" onclick="submit()">Buscar <i class="fa fa-search"></i></button>
+							</form>							
 
 						</div>
+
 						<div class="sidebar-widget">
 							<div class="categories">
 								<div class="sidebar-heading">
@@ -58,6 +74,7 @@
 								</ul>
 							</div>
 						</div>
+
 						<div class="sidebar-widget">
 							<div class="tags">
 								<div class="sidebar-heading">
@@ -70,6 +87,7 @@
 								</ul>
 							</div>
 						</div>
+
 					</div>
                 </div>
                 
@@ -92,6 +110,13 @@
                 </div>
             </div>
         </div>
-    </section>
+	</section>
+	
+	<script>
+		function changeImage(e){
+			var image = e.src
+			document.querySelector('#banner').src = image
+		}
+	</script>
 
 @include('welcome.footer')

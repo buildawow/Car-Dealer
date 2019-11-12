@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\car;
+use App\Gallery;
 use Illuminate\Http\Request;
 
-class CarDetailController extends Controller
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,24 +41,21 @@ class CarDetailController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\car  $car
+     * @param  \App\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
-    public function show(car $car)
+    public function show(Gallery $gallery)
     {
-        $brands = Car::all()->pluck('brand')->unique();
-        $models = Car::all()->pluck('model')->unique();
-        $galleryImages = $car->galleryImages->reverse()->take(3);
-        return view('car-detail.index')->with('car', $car)->with('brands', $brands)->with('models', $models)->with('galleryImages', $galleryImages);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\car  $car
+     * @param  \App\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
-    public function edit(car $car)
+    public function edit(Gallery $gallery)
     {
         //
     }
@@ -67,10 +64,10 @@ class CarDetailController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\car  $car
+     * @param  \App\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, car $car)
+    public function update(Request $request, Gallery $gallery)
     {
         //
     }
@@ -78,10 +75,10 @@ class CarDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\car  $car
+     * @param  \App\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
-    public function destroy(car $car)
+    public function destroy(Gallery $gallery)
     {
         //
     }

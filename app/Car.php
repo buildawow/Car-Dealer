@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     protected $fillable = [
-        'brand', 'model', 'year', 'picture', 'price', 'availability', 'mileage'
+        'brand', 'model', 'year', 'picture', 'price', 'availability', 'mileage', 'plates'
     ];
 
     protected $casts = [
@@ -39,6 +39,17 @@ class Car extends Model
     }
 
     /**
+     * Scope for plates
+     * 
+     * @return Builder
+     */
+    public function scopePlates($query, $plates)
+    {
+        return $query->orwhere('plates', 'LIKE', "%{$plates}%");
+    }
+
+
+    /**
      * It returns a message of availability
      * 
      * @return string
@@ -48,5 +59,9 @@ class Car extends Model
         return $this->availability == 1 ? 'Disponible' : 'No Disponible';
     }
 
+    public function galleryImages()
+    {
+        return $this->hasMany(Gallery::class);
+    }
 
 }

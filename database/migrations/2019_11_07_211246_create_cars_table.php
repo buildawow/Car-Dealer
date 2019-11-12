@@ -22,6 +22,7 @@ class CreateCarsTable extends Migration
             $table->string('price');
             $table->boolean('availability');
             $table->string('mileage')->nullable();
+            $table->string('plates')->nullable();
             $table->timestamps();
         });
     }

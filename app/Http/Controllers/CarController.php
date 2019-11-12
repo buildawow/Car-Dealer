@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Car;
+use App\Gallery;
 use App\Http\Requests\CarRequest;
 use App\Services\Search\Search;
 use Illuminate\Http\Request;
@@ -37,15 +38,46 @@ class CarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CarRequest $request)
+    public function store(carRequest $request)
     {
+        $gallery = $request->gallery;
+        $request->files->remove('gallery');
+
         $car = (new Car)->create($request->all());
+
         if ($this->imageIsUpload($request)) {
             $picture = $request->picture->store('uploads', 'public');
             $this->resizeImage($picture);
             $car->update(['picture' => $picture]);
         }
+
+        if ($this->galleryIsUpload($gallery)) {
+            
+
+            foreach ($gallery as $galleryImage) {
+                $filename = $galleryImage->store('uploads', 'public');
+                $this->resizeImage($filename);
+                (new Gallery)->create([
+                    'car_id'    => $car->id,
+                    'image'     => $filename
+                ]);
+            }
+
+        }
+
         return redirect()->route('car.index')->with('success', 'Vehiculo Creado');
+    }
+
+    /**
+     * It validates if gallery is not null
+     * 
+     * @param mixed
+     * 
+     * @return bool
+     */
+    public function galleryIsUpload($gallery)
+    {
+        return $gallery !== null;
     }
 
     /**
@@ -103,10 +135,29 @@ class CarController extends Controller
             'model'         => $request->model,
             'year'          => $request->year,
             'price'         => $request->price,
+            'plates'        => $request->plates,
             'availability'  => $request->availability,
             'mileage'       => $request->mileage,
             'picture'       => $picture,
         ]);
+
+        if ($this->galleryIsUpload($request->gallery)) {
+            $oldCarGallery = Gallery::where('car_id', $car->id)->get();
+            $oldCarGallery->each(function($galleryImage){
+                Storage::delete('public/' . $galleryImage->image);
+                $galleryImage->delete();
+            });
+
+            foreach ($request->gallery as $galleryImage) {
+                $filename = $galleryImage->store('uploads', 'public');
+                $this->resizeImage($filename);
+                (new Gallery)->create([
+                    'car_id'    => $car->id,
+                    'image'     => $filename
+                ]);
+            }
+
+        }
         return redirect()->route('car.index')->with('success', 'Vehiculo Actualizado');
     }
 
@@ -123,6 +174,14 @@ class CarController extends Controller
      */
     public function destroy(Car $car)
     {
+        Storage::delete('public/' . $car->picture);
+
+        $oldCarGallery = Gallery::where('car_id', $car->id)->get();
+        $oldCarGallery->each(function($galleryImage){
+            Storage::delete('public/' . $galleryImage->image);
+            $galleryImage->delete();
+        });
+
         $car->delete();
         return redirect()->route('car.index')->with('success', 'Vehiculo Eliminado');
     }
@@ -145,13 +204,25 @@ class CarController extends Controller
      */
     public function advanceSearch()
     {
-        $brand = request('brand');
-        $minPrice = request('min-price');
-        $maxPrice = request('max-price');
-        $cars = Car::where('brand', $brand)->orwhere(function($query) use($minPrice, $maxPrice){
+        $brand      = request('brand');
+        $minPrice   = request('min-price');
+        $maxPrice   = request('max-price');
+        $cars       = Car::where('brand', $brand)->orwhere(function($query) use($minPrice, $maxPrice){
             $query->orwhere('price', 'LIKE', $minPrice)
                 ->orwhere('price', 'LIKE', $maxPrice);
         })->get();
         return view('welcome.car.index')->with('cars', $cars);
     }
+
+    /**
+     * It search a car by brand, model or plates
+     * 
+     * @return collection
+     */
+    public function adminSearch()
+    {
+        $cars = (new Search)->query(new Car, ['brand', 'carModel', 'plates'], 5);
+        return view('car.index')->with('cars', $cars);
+    }
+
 }

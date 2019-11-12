@@ -19,6 +19,8 @@ Route::get('list-by-brand/{brand}', 'CarListBrandController@show')->name('list-b
 
 Route::get('list-by-model/{model}', 'CarListModelController@show')->name('list-by-model');
 
+Route::any('car-admin-search', 'CarController@adminSearch')->name('car-admin-search');
+
 Route::any('car-search', 'CarController@search')->name('car-search');
 
 Route::any('advance-search', 'CarController@advanceSearch')->name('advance-search');

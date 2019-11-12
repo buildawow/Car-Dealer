@@ -1,9 +1,14 @@
 @extends('layouts.admin-panel')
 
 @section('content')
-
+<h1 class="text-center mt-5">Vehiculos</h1>
 <div class="d-flex align-items-center justify-content-between mt-4">
-    <h1>Vehiculos</h1>
+    <form class="form-inline" action="{{ route('car-admin-search') }}" method="POST" role="search">
+        {{ csrf_field() }}
+        <div class="input-group">
+            <input type="text" class="form-control mb-2 shadow-sm" name="query" placeholder="Buscar">
+        </div>
+    </form>
     <a href="{{ route('car.create') }}" class="btn btn-outline-primary">Nuevo</a>
 </div>
 <hr>
