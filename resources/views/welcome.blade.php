@@ -1,10 +1,10 @@
-{{-- <script languaje="javascript">
+<script languaje="javascript">
         var getin = prompt("Necesitas una contraseña para acceder al sitio.")
         if (getin!="Carros")
         {location.href='{{ route('welcome') }}'}
         else
         {console.log('Contraseña correcta')}
-</script> --}}
+</script>
 
     @include('welcome.header')
 	
