@@ -46,7 +46,7 @@ class CarListModelController extends Controller
      */
     public function show($model)
     {
-        $cars = Car::where('model', $model)->paginate(9);
+        $cars = Car::whereNotNull('picture')->where('model', $model)->paginate(9);
         $brands = Car::all()->pluck('brand')->unique();
         return view('welcome.car.index')->with('cars', $cars)->with('brands', $brands);
     }
