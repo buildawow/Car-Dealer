@@ -17,7 +17,7 @@ class WelcomeController extends Controller
         $cars = Car::all();
         $brands = $cars->pluck('brand')->unique();
         $models = $cars->pluck('model')->unique();
-        return view('welcome')->with('cars', Car::all())->with('brands', $brands)->with('models', $models);
+        return view('welcome')->with('cars', Car::paginate(6))->with('brands', $brands)->with('models', $models);
     }
 
     /**

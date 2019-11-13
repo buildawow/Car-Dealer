@@ -20,6 +20,7 @@
             <th scope="col">Modelo</th>
             <th scope="col">Año</th>
             <th scope="col">Precio</th>
+            <th scope="col">Placa</th>
             <th scope="col">Disponibilidad</th>
             </tr>
         </thead>
@@ -30,6 +31,7 @@
                     <td><a class="text-secondary text-decoration-none" href="{{ route('car.show', $car) }}">{{ $car->model }}</a></td>
                     <td><a class="text-secondary text-decoration-none" href="{{ route('car.show', $car) }}">{{ $car->year->format('Y') }}</a></td>
                     <td><a class="text-secondary text-decoration-none" href="{{ route('car.show', $car) }}">{{ $car->price }}</a></td>
+                    <td><a class="text-secondary text-decoration-none" href="{{ route('car.show', $car) }}">{{ $car->plates }}</a></td>
                     <td>
                     @if ($car->availability)
                     <a href="{{ route('car.show', $car) }}"><span class="badge badge-primary p-2">Disponible</span></a>

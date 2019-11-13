@@ -27,7 +27,7 @@
 											<a href="{{ route('car-detail', $car) }}" style="font-size: 10px">{{ $car->detail() }}</a>
 										</div>
 										<div class="thumb-inner">
-											<a href="{{ route('car-detail', $car) }}"><img src="{{ asset('storage/' . $car->picture) }}" alt="{{ $car->brand }} {{ $car->model }}" onerror="this.onerror=null;this.src='{{ asset('assets/images/image-placeholder.svg') }}';" class="img-fluid"></a>
+											<a href="{{ route('car-detail', $car) }}"><img src="{{ asset('storage/' . $car->picture) }}" alt="{{ $car->brand }} {{ $car->model }}" onerror="this.onerror=null;this.src='{{ asset('assets/images/image-placeholder.png') }}';" class="img-fluid"></a>
 										</div>
 									</div>
 									<div class="down-content">
@@ -48,6 +48,38 @@
 
 					</div>
 				</div>
+
+				<style>
+					.page-link{
+						color: #1e1e1e !important;
+						background-color: #f4c23d !important;
+						padding-top: 10px;
+						padding-bottom: 10px;
+						padding-right: 15px;
+						padding-left: 15px;
+						margin-left: 2px;
+						margin-right: 2px;
+    					border-radius: 4px;
+					}
+					.page-link:hover{
+						color: white !important;
+						background-color: #2959ad !important;
+						background-color: #2959ad !important;
+					}
+					.page-item.active .page-link{
+						color: white !important;
+						background-color: #2959ad !important;
+						border-color: #2959ad !important;
+					}
+					.page-link:active{
+						color: white !important;
+						background-color: #2959ad !important;
+						border-color: #2959ad !important;
+					}
+				</style>
+				
+				{{ $cars->links() }}
+
 			</div>
 		</div>
 	</section>
