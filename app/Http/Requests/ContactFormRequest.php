@@ -30,4 +30,5 @@ class ContactFormRequest extends FormRequest
             'comment'   =>      ['required', 'string', 'min:10']
         ];
     }
+
 }

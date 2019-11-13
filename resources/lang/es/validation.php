@@ -176,6 +176,7 @@ return [
         'second'                => 'segundo',
         'sex'                   => 'sexo',
         'subject'               => 'asunto',
+        'comment'               => 'comentario',
         'terms'                 => 'términos',
         'time'                  => 'hora',
         'title'                 => 'título',

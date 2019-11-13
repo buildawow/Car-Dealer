@@ -193,7 +193,7 @@ class CarController extends Controller
      */
     public function search()
     {
-        $cars = (new Search)->query(new Car, ['brand', 'carModel']);
+        $cars = (new Search)->query(new Car, ['brandWithPictureNotNull', 'carModelWithPictureNotNull']);
         return view('welcome.car.index')->with('cars', $cars);
     }
 
@@ -207,10 +207,10 @@ class CarController extends Controller
         $brand      = request('brand');
         $minPrice   = request('min-price');
         $maxPrice   = request('max-price');
-        $cars       = Car::where('brand', $brand)->orwhere(function($query) use($minPrice, $maxPrice){
+        $cars       = Car::where('brand', $brand)->whereNotNull('picture')->orwhere(function($query) use($minPrice, $maxPrice){
             $query->orwhere('price', 'LIKE', $minPrice)
                 ->orwhere('price', 'LIKE', $maxPrice);
-        })->get();
+        })->paginate(6);
         return view('welcome.car.index')->with('cars', $cars);
     }
 

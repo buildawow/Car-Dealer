@@ -187,27 +187,40 @@
 							<div class="sep-section-heading">
 								<h2>Envianos un <em>Mensaje</em></h2>
 							</div>
-							<form id="contact_form" action="#" method="POST" enctype="multipart/form-data">
+							<form id="contact_form" action="{{ route('contact.store') }}" method="POST" enctype="multipart/form-data">
+								@csrf
 								<div class="row">
 									<div class=" col-md-4 col-sm-4 col-xs-6">
-										<input type="text" class="blog-search-field" name="s" placeholder="Tu nombre..." value="" >
+										<input type="text" class="blog-search-field" name="name" placeholder="Tu nombre..." value="" >
+										@error('name')
+										<small class="text-danger">{{ $message }}</small>
+										@enderror
 									</div>
 									<div class="col-md-4 col-sm-4 col-xs-6">
-										<input type="text" class="blog-search-field" name="s" placeholder="Tu Correo electronico..." value="">
+										<input type="text" class="blog-search-field" name="email" placeholder="Tu Correo electronico..." value="">
+										@error('email')
+										<small class="text-danger">{{ $message }}</small>
+										@enderror
 									</div>
 									<div class="col-md-4 col-sm-4 col-xs-12">
-										<input type="text" class="subject" name="s" placeholder="Tema..." value="">
+										<input type="text" class="subject" name="subject" placeholder="Tema..." value="">
+										@error('subject')
+										<small class="text-danger">{{ $message }}</small>
+										@enderror
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-12 col-sm-12">
-										<textarea id="message" class="input" name="message" placeholder="Mensaje..."></textarea>
+										<textarea id="message" class="input" name="comment" placeholder="Mensaje..."></textarea>
+										@error('comment')
+										<small class="text-danger">{{ $message }}</small>
+										@enderror
 									</div>
 								</div>
 								<div class="row">
 									<div class="submit-coment col-md-12">
 										<div class="primary-button">
-											<a href="#">Enviar <i class="fa fa-paper-plane"></i></a>
+											<button class="btn btn-primary" type="submit" onclick="submit()">Enviar <i class="fa fa-paper-plane"></i></button>
 										</div>
 									</div>
 								</div>

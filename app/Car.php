@@ -28,6 +28,11 @@ class Car extends Model
         return $query->orwhere('brand', 'LIKE', "%{$brand}%");
     }
 
+    public function scopeBrandWithPictureNotNull($query, $brand)
+    {
+        return $query->orwhere('brand', 'LIKE', "%{$brand}%")->whereNotNull('picture');
+    }
+
     /**
      * Scope for model
      * 
@@ -36,6 +41,11 @@ class Car extends Model
     public function scopeCarModel($query, $model)
     {
         return $query->orwhere('model', 'LIKE', "%{$model}%");
+    }
+
+    public function scopeCarModelWithPictureNotNull($query, $model)
+    {
+        return $query->orwhere('model', 'LIKE', "%{$model}%")->whereNotNull('picture');
     }
 
     /**
