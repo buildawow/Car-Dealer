@@ -35,7 +35,7 @@ class Car extends Model
      */
     public function scopeCarModel($query, $model)
     {
-        return $query->orwhere('models', 'LIKE', "%{$model}%");
+        return $query->orwhere('model', 'LIKE', "%{$model}%");
     }
 
     /**
