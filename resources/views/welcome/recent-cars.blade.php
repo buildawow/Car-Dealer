@@ -1,5 +1,5 @@
 
-	<section>
+	<section class="mt-3">
 		<div class="recent-cars">
 			<div class="container">
 				<div class="recent-car-content">
@@ -78,7 +78,7 @@
 					}
 				</style>
 				
-				{{ $cars->links() }}
+				<div class="mb-5">{{ $cars->links() }}</div>
 
 			</div>
 		</div>

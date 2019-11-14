@@ -1,4 +1,4 @@
-<section id="advance-search" class="mt-5">
+<section id="advance-search">
     <div class="features-search-section">
         <div class="container">
             <div class="row">
