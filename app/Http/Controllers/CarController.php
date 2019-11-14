@@ -204,13 +204,20 @@ class CarController extends Controller
      */
     public function advanceSearch()
     {
+
         $brand      = request('brand');
         $minPrice   = request('min-price');
         $maxPrice   = request('max-price');
+
         $cars       = Car::where('brand', $brand)->whereNotNull('picture')->orwhere(function($query) use($minPrice, $maxPrice){
             $query->orwhere('price', 'LIKE', $minPrice)
                 ->orwhere('price', 'LIKE', $maxPrice);
         })->paginate(6);
+        $cars->appends([
+            'brand'     => $brand,
+            'min-price' => $minPrice,
+            'max-price' => $maxPrice
+        ]);
         return view('welcome.car.index')->with('cars', $cars);
     }
 
