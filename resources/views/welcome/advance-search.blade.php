@@ -60,7 +60,7 @@
                                     <div class="col-md-12">       
                                         <div class="input-select">
                                             <select name="brand" id="brand">
-                                                <option value="-1">Selecciona la Marca</option>
+                                                <option disabled selected>Selecciona la Marca</option>
                                                     @foreach ($brands as $brand)
                                                         <option value="{{ $brand }}">{{ $brand }}</option>
                                                     @endforeach
@@ -80,7 +80,7 @@
                                     <div class="col-md-12">       
                                         <div class="input-select">
                                             <select name="min-price" id="min-price">
-                                                <option value="">Precio Minimo</option>
+                                                <option disabled selected>Precio Minimo</option>
                                                 <option value="30000">Q 30, 000</option>
                                                 <option value="40000">Q 40, 000</option>
                                                 <option value="50000">Q 50,000</option>
@@ -91,7 +91,7 @@
                                     <div class="col-md-12">       
                                         <div class="input-select">
                                             <select name="max-price" id="max-price">
-                                                <option value="">Precio Maximo</option>
+                                                <option disabled selected>Precio Maximo</option>
                                                 <option value="30000">Q 30, 000</option>
                                                 <option value="40000">Q 40, 000</option>
                                                 <option value="50000">Q 50,000</option>

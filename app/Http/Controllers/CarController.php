@@ -198,6 +198,17 @@ class CarController extends Controller
     }
 
     /**
+     * It search a car by brand, model or plates
+     * 
+     * @return collection
+     */
+    public function adminSearch()
+    {
+        $cars = (new Search)->query(new Car, ['brand', 'carModel', 'plates'], 5);
+        return view('car.index')->with('cars', $cars);
+    }
+
+    /**
      * It filter a basic search of cars
      * 
      * @return collection
@@ -209,27 +220,41 @@ class CarController extends Controller
         $minPrice   = request('min-price');
         $maxPrice   = request('max-price');
 
-        $cars       = Car::where('brand', $brand)->whereNotNull('picture')->orwhere(function($query) use($minPrice, $maxPrice){
-            $query->orwhere('price', 'LIKE', $minPrice)
-                ->orwhere('price', 'LIKE', $maxPrice);
-        })->paginate(6);
+        $query = Car::whereNotNull('picture');
+
+        if ($this->requestHasBrand($brand)) {
+
+            $query->where('brand', $brand);
+
+        }
+
+        if ($this->requestHasMinAndMaxPrice($minPrice, $maxPrice)) {
+
+            $query->where(function($query) use($maxPrice, $minPrice){
+                return $query->orwhereBetween('price', [$minPrice, $maxPrice]);
+            });
+
+        }
+
+        $cars = $query->paginate(6);
+
         $cars->appends([
             'brand'     => $brand,
             'min-price' => $minPrice,
             'max-price' => $maxPrice
         ]);
+        
         return view('welcome.car.index')->with('cars', $cars);
     }
 
-    /**
-     * It search a car by brand, model or plates
-     * 
-     * @return collection
-     */
-    public function adminSearch()
+    public function requestHasMinAndMaxPrice($minPrice, $maxPrice)
     {
-        $cars = (new Search)->query(new Car, ['brand', 'carModel', 'plates'], 5);
-        return view('car.index')->with('cars', $cars);
+        return $minPrice !== null && $maxPrice !== null;
+    }
+
+    public function requestHasBrand($brand)
+    {
+        return $brand !== null;
     }
 
 }
