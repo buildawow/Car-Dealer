@@ -4,34 +4,6 @@
 
 @include('welcome.navbar')
 
-<style>
-.img-car-background {
-    position: relative;
-	margin-left: 10px;
-    width:  600px;
-    height: 120px;
-    background-position: 50% 50% !important;
-    background-repeat:   no-repeat !important;
-    background-size:     cover !important;
-	cursor: pointer;
-}
-.banner {
-	height: 430px;
-	/* width:100%;  */
-	background-repeat: no-repeat !important;
-	background-position: center !important; 
-	background-size:cover !important;
-}
-@media only screen and (max-width: 1000px) {
-	.img-car-background{
-		height: 40px;
-	}
-	.banner{
-		height: 200px;
-	}
-}
-</style>
-
 <div class="blog-page" >
 	<div class="container">
 		<div class="row">
@@ -39,8 +11,7 @@
 			<div class="col-md-8">
 				<div class="single-post">
 					<div class="item">
-						{{-- <img id="banner" src="{{ asset('storage/' . $car->picture) }}" alt=""> --}}
-						<div class="banner" style="background: url({{ asset('storage/' . $car->picture) }});" ></div>
+						<div class="banner" id="banner" style="background: url({{ asset('storage/' . $car->picture) }});" ></div>
 						<div class="down-content">
 							<h4>{{ $car->brand }} {{ $car->model }}</h4>
 							<ul>
@@ -53,11 +24,11 @@
 								
 								<em class="mr-5">{{ $car->detail() }}</em>
 
-								<div class="img-car-background" style="background: url({{ asset('storage/' . $car->picture) }})"></div>
+								<div id="{{ asset('storage/' . $car->picture) }}" onclick="changeImage(this)" class="img-car-background" style="background: url({{ asset('storage/' . $car->picture) }})"></div>
 
 								@foreach ($galleryImages as $gallery)
 
-									<div class="img-car-background" style="background: url({{ asset('storage/' . $gallery->image) }})"></div>
+									<div id="{{ asset('storage/' . $gallery->image) }}" onclick="changeImage(this)" class="img-car-background" style="background: url({{ asset('storage/' . $gallery->image) }})"></div>
 
 								@endforeach
 								
@@ -131,11 +102,8 @@
         </div>
 	</section>
 	
-	<script>
-		function changeImage(e){
-			var image = e.src
-			document.querySelector('#banner').src = image
-		}
-	</script>
+<script>
+	const changeImage = (e) => document.querySelector('#banner').style.backgroundImage  = `url(${e.id})`
+</script>
 
 @include('welcome.footer')

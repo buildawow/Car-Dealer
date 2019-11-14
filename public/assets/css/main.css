@@ -48,6 +48,24 @@ p {
     padding: 80px 0px 0px 0px
 } */
 
+.img-car-background {
+    position: relative;
+	margin-left: 10px;
+    width:  600px;
+    height: 120px;
+    background-position: 50% 50% !important;
+    background-repeat:   no-repeat !important;
+    background-size:     cover !important;
+	cursor: pointer;
+}
+.banner {
+	height: 430px;
+	/* width:100%;  */
+	background-repeat: no-repeat !important;
+	background-position: center !important; 
+	background-size:cover !important;
+}
+
 .primary-button a {
     display: inline-block;
     background: #2959ad;
@@ -3629,6 +3647,15 @@ footer .sub-footer p a:hover {
     footer .sub-footer {
         margin-top: 0px
     }
+}
+
+@media only screen and (max-width: 1000px) {
+	.img-car-background{
+		height: 40px;
+	}
+	.banner{
+		height: 200px;
+	}
 }
 
 /* 04. Footer Ends */
