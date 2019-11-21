@@ -16,7 +16,7 @@ $factory->define(Car::class, function (Faker $faker) {
         'year'          => now(),
         'price'         => $prices[$id],
         'mileage'       => '46000',
-        'availability'  => true,
+        'availability'  => 'Disponible',
         'plates'        => $faker->uuid
     ];
 });

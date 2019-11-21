@@ -20,7 +20,7 @@ class CreateCarsTable extends Migration
             $table->date('year');
             $table->string('picture')->nullable();
             $table->string('price');
-            $table->boolean('availability');
+            $table->string('availability');
             $table->string('mileage')->nullable();
             $table->string('plates')->nullable();
             $table->timestamps();

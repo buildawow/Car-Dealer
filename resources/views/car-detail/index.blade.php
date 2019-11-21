@@ -22,7 +22,12 @@
 							</ul>
 							<div class="d-flex flex-row align-items-center justify-content-left">
 								
-								<em class="mr-5">{{ $car->detail() }}</em>
+								<em class="mr-5 
+									@if($car->availability == 'Disponible') 		text-primary 
+									@elseif($car->availability == 'No Disponible') 	text-danger 
+									@else 											text-warning 
+									@endif"
+								>{{ $car->availability }}</em>
 
 								<div id="{{ asset('storage/' . $car->picture) }}" onclick="changeImage(this)" class="img-car-background" style="background: url({{ asset('storage/' . $car->picture) }})"></div>
 

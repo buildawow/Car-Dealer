@@ -147,8 +147,9 @@ document.querySelector('#picture').addEventListener('change', function(e){
     <div class="form-group">
         <label for="availability">Disponibilidad</label>
         <select name="availability" id="availability" class="form-control">
-            <option value="1" {{ $car->availability == 1 ? 'selected' : '' }}>Disponible</option>
-            <option value="0" {{ $car->availability == 0 ? 'selected' : '' }}>No Disponible</option>
+            <option value="Disponible"      {{ $car->availability == 'Disponible'       ? 'selected' : '' }}>Disponible</option>
+            <option value="Vendido"         {{ $car->availability == 'Vendido'          ? 'selected' : '' }}>Vendido</option>
+            <option value="No Disponible"   {{ $car->availability == 'No Disponible'    ? 'selected' : '' }}>No Disponible</option>
         </select>
         @error('availability')
         <span class="text-danger">{{ $message }}</span>

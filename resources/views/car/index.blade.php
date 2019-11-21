@@ -33,11 +33,7 @@
                     <td><a class="text-secondary text-decoration-none" href="{{ route('car.show', $car) }}">{{ $car->price }}</a></td>
                     <td><a class="text-secondary text-decoration-none" href="{{ route('car.show', $car) }}">{{ $car->plates }}</a></td>
                     <td>
-                    @if ($car->availability)
-                    <a href="{{ route('car.show', $car) }}"><span class="badge badge-primary p-2">Disponible</span></a>
-                    @else
-                    <a href="{{ route('car.show', $car) }}"><span class="badge badge-danger p-2">No Disponible</span></a>
-                    @endif
+                        <a href="{{ route('car.show', $car) }}"><span class="badge @if($car->availability == 'Disponible') badge-primary @elseif($car->availability == 'Vendido') badge-warning @else badge-danger @endif p-2">{{ $car->availability }}</span></a>
                     </td>
                 </tr>
             @endforeach

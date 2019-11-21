@@ -39,7 +39,7 @@
     </div>
     <div class="form-group">
         <label for="availability">Disponibilidad</label>
-        <input readonly type="number" class="form-control" id="mileage" name="mileage" value="{{ old('mileage', $car->availability) }}">
+        <input readonly type="text" class="form-control" id="availability" name="availability" value="{{ old('availability', $car->availability) }}">
     </div>
     <input type="file" id="picture" name="picture" class="form-control d-none" >
     <div class="d-flex align-items-center justify-content-between">

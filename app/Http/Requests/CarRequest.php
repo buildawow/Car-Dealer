@@ -29,7 +29,7 @@ class CarRequest extends FormRequest
             'year'              =>      ['required', 'string'],
             'price'             =>      ['required', 'string'],
             'plates'            =>      ['required', 'string'],
-            'availability'      =>      ['required', 'boolean']
+            'availability'      =>      ['required', 'string']
         ];
     }
 }

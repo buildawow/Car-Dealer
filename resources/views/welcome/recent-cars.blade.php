@@ -24,7 +24,16 @@
 								<div class="car-item wow fadeIn" data-wow-duration="0.75s">
 									<div class="thumb-content">
 										<div class="car-banner">
-											<a href="{{ route('car-detail', $car) }}" style="font-size: 10px">{{ $car->detail() }}</a>
+											<a 
+												href="{{ route('car-detail', $car) }}" 
+												style="font-size: 10px; 
+												@if($car->availability == 'Disponible') 
+													background-color: #00a6eb; color:white 
+												@elseif($car->availability == 'No Disponible')
+													background-color: #e74a3b; color:white 
+												@endif" 
+												>{{ $car->availability }}
+											</a>
 										</div>
 										<div class="thumb-inner">
 											<a href="{{ route('car-detail', $car) }}"><img src="{{ asset('storage/' . $car->picture) }}" alt="{{ $car->brand }} {{ $car->model }}" onerror="this.onerror=null;this.src='{{ asset('assets/images/image-placeholder.png') }}';" class="img-fluid"></a>
